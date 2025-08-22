@@ -2,6 +2,7 @@ package agent
 
 import "strings"
 
+// Structured steps, after getting OpenAI response
 type Planner struct{}
 
 type Task struct {

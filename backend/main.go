@@ -7,6 +7,7 @@ import (
 	"github.com/gofiber/fiber/v2"
 )
 
+// Server
 func main() {
 	app := fiber.New()
 

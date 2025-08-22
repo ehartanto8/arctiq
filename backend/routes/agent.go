@@ -6,7 +6,7 @@ import (
 	"github.com/gofiber/fiber/v2"
 )
 
-// Request Handler
+// API Controller
 func AgentHandler(c *fiber.Ctx) error {
 	var req struct {
 		Prompt string `json:"prompt"`

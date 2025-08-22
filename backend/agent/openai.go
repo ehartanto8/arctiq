@@ -11,7 +11,7 @@ import (
 
 const openaiURL = "https://api.openai.com/v1/chat/completions"
 
-// Request
+// Communication with OpenAI
 type chatMessage struct {
 	Role    string `json:"role"`
 	Content string `json:"content"`
