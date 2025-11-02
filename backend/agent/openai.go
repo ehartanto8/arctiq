@@ -63,6 +63,7 @@ func getPlanFromGPT(prompt string) (string, error) {
 	defer res.Body.Close()
 
 	if res.StatusCode != http.StatusOK {
+		// Ignore error
 		body, _ := io.ReadAll(res.Body)
 		return "", fmt.Errorf("OpenAI error: %s", string(body))
 	}

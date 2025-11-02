@@ -26,6 +26,7 @@ func (p *Planner) Plan(prompt string) ([]Task, error) {
 	var tasks []Task
 	step := 1
 
+	// Ignore index
 	for _, line := range lines {
 		line = strings.TrimSpace(line)
 		if line == "" {
