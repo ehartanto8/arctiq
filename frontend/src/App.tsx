@@ -1,26 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useState } from 'react';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [prompt, setPrompt] = useState('');
+    const [tasks, setTasks] = useState<any[]>([]);
+
+    return (
+        <div className="p-6 max-w-xl mx-auto space-y-4">
+            <h1 className="text-3xl font-bold">Arctiq</h1>
+
+            <textarea
+                className="w-full p-3 border rounded"
+                rows={4}
+                placeholder="What do you want to build?"
+                value={prompt}
+                onChange={(e) => setPrompt(e.target.value)} />
+
+            <button className="px-4 py-2 bg-blue-600 text-white rounded">
+                Generate Plan
+            </button>
+
+            <pre className="bg-gray-100 p-3 rounded">
+                {JSON.stringify(tasks, null, 2)}
+            </pre>
+        </div>
+    );
 }
 
 export default App;
