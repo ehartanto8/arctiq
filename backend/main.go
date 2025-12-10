@@ -4,6 +4,7 @@ import (
 	"arctiq-backend/routes"
 	"fmt"
 	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/fiber/v2/middleware/cors"
 	"github.com/gofiber/fiber/v2/middleware/logger"
 	"github.com/gofiber/fiber/v2/middleware/recover"
 	"log"
@@ -16,9 +17,21 @@ import (
 func main() {
 	app := fiber.New()
 
+	app.Use(func(c *fiber.Ctx) error {
+		fmt.Println("METHOD RECEIVED:", c.Method())
+		return c.Next()
+	})
+
+	app.Use(cors.New())
+
 	// Recover
 	app.Use(recover.New())
+
 	app.Use(func(c *fiber.Ctx) error {
+		if c.Method() == fiber.MethodOptions {
+			return c.Next()
+		}
+
 		id := c.Get("X-Request-ID")
 		if id == "" {
 			id = fmt.Sprintf("%x", c.Context().ID())
